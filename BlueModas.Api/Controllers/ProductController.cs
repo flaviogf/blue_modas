@@ -62,16 +62,16 @@ namespace BlueModas.Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<ProductShowViewModel> Show([FromRouteAttribute] int id)
         {
-            var product = _productRepository.FindById(id);
+            var maybeProduct = _productRepository.FindById(id);
 
-            if (product == null)
+            if (!maybeProduct.HasValue)
             {
                 return NotFound();
             }
 
-            var viewModel = _mapper.Map<ProductShowViewModel>(product);
+            var product = _mapper.Map<ProductShowViewModel>(maybeProduct.Value);
 
-            return Ok(viewModel);
+            return Ok(product);
         }
     }
 }

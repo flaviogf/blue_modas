@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BlueModas.Api.Database;
 using BlueModas.Api.Models;
+using BlueModas.Api.ViewModels;
 
 namespace BlueModas.Api.Repositories
 {
@@ -24,7 +25,7 @@ namespace BlueModas.Api.Repositories
             return _context.Products.ToList();
         }
 
-        public Product FindById(int id)
+        public Maybe<Product> FindById(int id)
         {
             return _context.Products.FirstOrDefault(it => it.Id == id);
         }

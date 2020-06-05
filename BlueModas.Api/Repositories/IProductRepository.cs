@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using BlueModas.Api.Models;
+using BlueModas.Api.ViewModels;
 
 namespace BlueModas.Api.Repositories
 {
@@ -9,6 +10,6 @@ namespace BlueModas.Api.Repositories
 
         IList<Product> FindAll();
 
-        Product FindById(int id);
+        Maybe<Product> FindById(int id);
     }
 }
