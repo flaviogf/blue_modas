@@ -1,0 +1,9 @@
+* {
+  outline: none;
+}
+
+html,
+body {
+  background-color: #1e1f28;
+  height: 100%;
+}
