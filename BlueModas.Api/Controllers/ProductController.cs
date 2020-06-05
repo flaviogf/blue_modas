@@ -94,5 +94,25 @@ namespace BlueModas.Api.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult Destroy([FromRoute] int id)
+        {
+            var maybeProduct = _productRepository.FindById(id);
+
+            if (!maybeProduct.HasValue)
+            {
+                return NotFound();
+            }
+
+            _productRepository.Remove(maybeProduct.Value);
+
+            _uow.Commit();
+
+            return NoContent();
+        }
     }
 }

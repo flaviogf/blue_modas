@@ -8,6 +8,8 @@ namespace BlueModas.Api.Repositories
     {
         void Add(Product product);
 
+        void Remove(Product product);
+
         IList<Product> FindAll();
 
         Maybe<Product> FindById(int id);

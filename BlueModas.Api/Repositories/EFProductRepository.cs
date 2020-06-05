@@ -20,6 +20,11 @@ namespace BlueModas.Api.Repositories
             _context.Products.Add(product);
         }
 
+        public void Remove(Product product)
+        {
+            _context.Products.Remove(product);
+        }
+
         public IList<Product> FindAll()
         {
             return _context.Products.ToList();
