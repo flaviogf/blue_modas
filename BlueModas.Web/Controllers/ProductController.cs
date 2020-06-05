@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlueModas.Web.Services;
+using BlueModas.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlueModas.Web.Controllers
@@ -19,9 +21,16 @@ namespace BlueModas.Web.Controllers
         [Route("")]
         public async Task<IActionResult> Index()
         {
-            var products = await _productService.FindAll();
+            var result = await _productService.FindAll();
 
-            return View(products);
+            if (result.IsFailure)
+            {
+                var products = new List<ProductIndexViewModel>();
+
+                return View(products);
+            }
+
+            return View(result.Value);
         }
     }
 }
