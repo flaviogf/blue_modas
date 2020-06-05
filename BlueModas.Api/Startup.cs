@@ -1,5 +1,9 @@
+using System.Reflection;
+using AutoMapper;
 using BlueModas.Api.Database;
+using BlueModas.Api.Models;
 using BlueModas.Api.Repositories;
+using BlueModas.Api.ViewModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +26,11 @@ namespace BlueModas.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<Context>(it => it.UseMySql(_configuration.GetConnectionString("Default")));
+
+            services.AddAutoMapper(it =>
+            {
+                it.CreateMap<Product, ProductIndexViewModel>().ReverseMap();
+            }, Assembly.GetExecutingAssembly());
 
             services.AddScoped<IProductRepository, EFProductRepository>();
 

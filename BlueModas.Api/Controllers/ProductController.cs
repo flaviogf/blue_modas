@@ -1,6 +1,7 @@
 using System.Collections.Generic;
-using BlueModas.Api.Models;
+using AutoMapper;
 using BlueModas.Api.Repositories;
+using BlueModas.Api.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlueModas.Api.Controllers
@@ -11,16 +12,19 @@ namespace BlueModas.Api.Controllers
     {
         private readonly IProductRepository _productRepository;
 
-        public ProductController(IProductRepository productRepository)
+        private readonly IMapper _mapper;
+
+        public ProductController(IProductRepository productRepository, IMapper mapper)
         {
             _productRepository = productRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
         [Route("")]
-        public ActionResult<List<Product>> Index()
+        public ActionResult<List<ProductIndexViewModel>> Index()
         {
-            var products = _productRepository.FindAll();
+            var products = _mapper.Map<IList<ProductIndexViewModel>>(_productRepository.FindAll());
 
             return Ok(products);
         }
