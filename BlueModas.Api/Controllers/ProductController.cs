@@ -49,7 +49,7 @@ namespace BlueModas.Api.Controllers
         [HttpGet]
         [Route("")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<List<ProductIndexViewModel>> Index()
+        public ActionResult<IList<ProductIndexViewModel>> Index()
         {
             var products = _mapper.Map<IList<ProductIndexViewModel>>(_productRepository.FindAll());
 
