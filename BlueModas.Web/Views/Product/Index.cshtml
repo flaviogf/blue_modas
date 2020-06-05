@@ -1,0 +1,10 @@
+@model IList<BlueModas.Web.ViewModels.ProductIndexViewModel>
+
+<h2>Products</h2>
+
+<ul>
+    @foreach(var it in Model)
+    {
+        <li>@it.Name</li>
+    }
+</ul>
