@@ -33,7 +33,7 @@ namespace BlueModas.Api.Controllers
 
         [HttpPost]
         [Route("")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<ProductShowViewModel> Store([FromBody] ProductStoreViewModel viewModel)
         {
