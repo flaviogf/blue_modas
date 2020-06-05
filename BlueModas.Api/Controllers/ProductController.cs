@@ -35,7 +35,7 @@ namespace BlueModas.Api.Controllers
         [Route("")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult Store([FromBody] ProductStoreViewModel viewModel)
+        public ActionResult<ProductShowViewModel> Store([FromBody] ProductStoreViewModel viewModel)
         {
             var product = _mapper.Map<Product>(viewModel);
 
@@ -43,7 +43,7 @@ namespace BlueModas.Api.Controllers
 
             _uow.Commit();
 
-            return Ok();
+            return CreatedAtAction(nameof(Show), new { id = product.Id }, _mapper.Map<ProductShowViewModel>(product));
         }
 
         [HttpGet]
