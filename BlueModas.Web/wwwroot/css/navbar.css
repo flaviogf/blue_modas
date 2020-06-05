@@ -1,0 +1,47 @@
+.navbar {
+  background-color: var(--gray);
+}
+
+.navbar__wrapper {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 16px;
+  margin: 0 auto;
+  max-width: 960px;
+  width: 100%;
+}
+
+.navbar__brand {
+  color: var(--white);
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.navbar__shopping-cart {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.navbar__shopping-cart i {
+  font-size: 24px;
+  position: relative;
+  margin: 0 10px;
+}
+
+.navbar__shopping-cart__items {
+  align-items: center;
+  background: var(--red);
+  bottom: -10px;
+  border-radius: 50%;
+  display: flex;
+  font-size: 12px;
+  font-weight: bold;
+  height: 20px;
+  justify-content: center;
+  padding: 3px;
+  position: absolute;
+  right: -10px;
+  width: 20px;
+}

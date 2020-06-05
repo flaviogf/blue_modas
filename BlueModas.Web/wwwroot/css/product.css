@@ -1,6 +1,5 @@
 .product {
-  color: #f6f6f6;
-  font-family: "Roboto", sans-serif;
+  color: var(--white);
   height: 100%;
   padding: 16px;
   margin: 0 auto;
@@ -15,10 +14,10 @@
 }
 
 .product__list__item {
+  overflow: hidden;
 }
 
 .product__list__item__image {
-  background-image: url("https://nerdstore.com.br/wp-content/uploads/2019/06/camiseta-no-pain-no-power-01.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -32,22 +31,24 @@
 .product__list__item__name {
   font-size: 16px;
   font-weight: bold;
-  margin-top: 24px;
+  margin-top: 28px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .product__list__item__price {
   display: block;
   font-size: 14px;
-  font-weight: bold;
   margin-top: 4px;
 }
 
 .product__list__item__add {
-  background-color: #ef3651;
+  background-color: var(--red);
   border: none;
   border-radius: 50%;
   bottom: -20px;
-  color: #f6f6f6;
+  color: var(--white);
   cursor: pointer;
   font-size: 18px;
   height: 50px;
@@ -58,11 +59,11 @@
 }
 
 .product__list__item__add:hover {
-  background-color: #cb102b;
+  background-color: var(--red-dark-1);
 }
 
 .product__list__item__add:active {
-  background-color: #870a1d;
+  background-color: var(--red-dark-2);
 }
 
 @media (min-width: 375px) {

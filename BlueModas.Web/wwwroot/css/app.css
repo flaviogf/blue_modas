@@ -1,9 +1,19 @@
+:root {
+  --black: #1e1f28;
+  --gray: #2a2c36;
+  --red: #ef3651;
+  --red-dark-1: #cb102b;
+  --red-dark-2: #870a1d;
+  --white: #f6f6f6;
+}
+
 * {
+  font-family: "Roboto", sans-serif;
   outline: none;
 }
 
 html,
 body {
-  background-color: #1e1f28;
+  background-color: var(--black);
   height: 100%;
 }
