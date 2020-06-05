@@ -8,5 +8,7 @@ namespace BlueModas.Web.Services
     public interface IProductService
     {
         Task<Result<IList<ProductIndexViewModel>>> FindAll();
+
+        Task<Result<ProductShowViewModel>> FindOne(int id);
     }
 }
