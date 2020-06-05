@@ -14,6 +14,11 @@ namespace BlueModas.Api.Repositories
             _context = context;
         }
 
+        public void Add(Product product)
+        {
+            _context.Products.Add(product);
+        }
+
         public IList<Product> FindAll()
         {
             return _context.Products.ToList();

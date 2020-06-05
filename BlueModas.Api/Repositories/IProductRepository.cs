@@ -5,6 +5,8 @@ namespace BlueModas.Api.Repositories
 {
     public interface IProductRepository
     {
+        void Add(Product product);
+
         IList<Product> FindAll();
     }
 }

@@ -1,6 +1,7 @@
 using System.Reflection;
 using AutoMapper;
 using BlueModas.Api.Database;
+using BlueModas.Api.Infrastructure;
 using BlueModas.Api.Models;
 using BlueModas.Api.Repositories;
 using BlueModas.Api.ViewModels;
@@ -30,7 +31,10 @@ namespace BlueModas.Api
             services.AddAutoMapper(it =>
             {
                 it.CreateMap<Product, ProductIndexViewModel>().ReverseMap();
+                it.CreateMap<Product, ProductStoreViewModel>().ReverseMap();
             }, Assembly.GetExecutingAssembly());
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped<IProductRepository, EFProductRepository>();
 
