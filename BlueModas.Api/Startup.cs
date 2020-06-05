@@ -33,6 +33,7 @@ namespace BlueModas.Api
                 it.CreateMap<Product, ProductIndexViewModel>().ReverseMap();
                 it.CreateMap<Product, ProductStoreViewModel>().ReverseMap();
                 it.CreateMap<Product, ProductShowViewModel>().ReverseMap();
+                it.CreateMap<Product, ProductUpdateViewModel>().ReverseMap();
             }, Assembly.GetExecutingAssembly());
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
