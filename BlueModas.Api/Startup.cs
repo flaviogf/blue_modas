@@ -1,10 +1,12 @@
 using BlueModas.Api.Database;
+using BlueModas.Api.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace BlueModas.Api
 {
@@ -21,7 +23,14 @@ namespace BlueModas.Api
         {
             services.AddDbContext<Context>(it => it.UseMySql(_configuration.GetConnectionString("Default")));
 
+            services.AddScoped<IProductRepository, EFProductRepository>();
+
             services.AddControllers();
+
+            services.AddSwaggerGen(it =>
+            {
+                it.SwaggerDoc("v1", new OpenApiInfo { Title = "Blue Modas API", Version = "v1" });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, Context context)
@@ -30,6 +39,14 @@ namespace BlueModas.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(it =>
+            {
+                it.SwaggerEndpoint("/swagger/v1/swagger.json", "Blue Modas API V1");
+                it.RoutePrefix = string.Empty;
+            });
 
             app.UseRouting();
 
