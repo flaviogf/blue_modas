@@ -6,6 +6,7 @@ using BlueModas.Api.Repositories;
 using BlueModas.Api.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace BlueModas.Api.Controllers
 {
@@ -35,6 +36,7 @@ namespace BlueModas.Api.Controllers
         [Route("")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [SwaggerOperation(Tags = new[] { "Product" })]
         public ActionResult<ProductShowViewModel> Store([FromBody] ProductStoreViewModel viewModel)
         {
             var product = _mapper.Map<Product>(viewModel);
@@ -49,6 +51,7 @@ namespace BlueModas.Api.Controllers
         [HttpGet]
         [Route("")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [SwaggerOperation(Tags = new[] { "Product" })]
         public ActionResult<IList<ProductIndexViewModel>> Index()
         {
             var products = _mapper.Map<IList<ProductIndexViewModel>>(_productRepository.FindAll());
@@ -60,6 +63,7 @@ namespace BlueModas.Api.Controllers
         [Route("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Tags = new[] { "Product" })]
         public ActionResult<ProductShowViewModel> Show([FromRouteAttribute] int id)
         {
             var maybeProduct = _productRepository.FindById(id);
@@ -79,6 +83,7 @@ namespace BlueModas.Api.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Tags = new[] { "Product" })]
         public ActionResult Update([FromRoute] int id, [FromBody] ProductUpdateViewModel viewModel)
         {
             var maybeProduct = _productRepository.FindById(id);
@@ -99,6 +104,7 @@ namespace BlueModas.Api.Controllers
         [Route("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Tags = new[] { "Product" })]
         public ActionResult Destroy([FromRoute] int id)
         {
             var maybeProduct = _productRepository.FindById(id);
