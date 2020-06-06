@@ -1,3 +1,5 @@
+@model BlueModas.Web.ViewModels.OrderShowViewModel
+
 @section styles {
     <link rel="stylesheet" href="~/css/shopping-cart.css">
 }
@@ -7,46 +9,32 @@
 <partial name="_Alert" />
 
 <main class="shopping-cart">
-    <h2 class="shopping-cart__title">Meu Carrinho</h2>
+    @if(Model.Items.Any())
+    {
+        <ul class="shopping-cart__list">
+            @foreach (var it in Model.Items)
+            {
+                <li class="shopping-cart__list__item">
+                    <span class="shopping-cart__list__item__image" style="background-image: url('@it.ProductImage');"></span>
 
-    <ul class="shopping-cart__list">
-        <li class="shopping-cart__list__item">
-            <span class="shopping-cart__list__item__image"></span>
+                    <div class="shopping-cart__list__item__info">
+                        <header class="shopping-cart__list__item__header">@it.ProductName</header>
 
-            <div class="shopping-cart__list__item__info">
-                <header class="shopping-cart__list__item__header">T-Shirt</header>
-
-                <footer class="shopping-cart__list__item__footer">
-                    <input class="shopping-cart__list__item__quantity" type="number" step="1" min="1">
-                    <span class="shopping-cart__list__item__price">$39.99</span>
-                </footer>
-            </div>
-        </li>
-
-        <li class="shopping-cart__list__item">
-            <span class="shopping-cart__list__item__image"></span>
-            
-            <div class="shopping-cart__list__item__info">
-                <header class="shopping-cart__list__item__header">T-Shirt</header>
-
-                <footer class="shopping-cart__list__item__footer">
-                    <input class="shopping-cart__list__item__quantity" type="number" step="1" min="1">
-                    <span class="shopping-cart__list__item__price">$39.99</span>
-                </footer>
-            </div>
-        </li>
-
-        <li class="shopping-cart__list__item">
-            <span class="shopping-cart__list__item__image"></span>
-            
-            <div class="shopping-cart__list__item__info">
-                <header class="shopping-cart__list__item__header">T-Shirt</header>
-
-                <footer class="shopping-cart__list__item__footer">
-                    <input class="shopping-cart__list__item__quantity" type="number" step="1" min="1">
-                    <span class="shopping-cart__list__item__price">$39.99</span>
-                </footer>
-            </div>
-        </li>
-    </ul>
+                        <footer class="shopping-cart__list__item__footer">
+                            <input class="shopping-cart__list__item__quantity" type="number" step="1" min="1" value="@it.Quantity">
+                            <span class="shopping-cart__list__item__price">@it.Price.ToString("C")</span>
+                        </footer>
+                    </div>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <div class="shopping-cart__empty">
+            <i class="fa fa-shopping-bag"></i>
+            <h3 class="shopping-cart__empty__title">Carrinho Vazio</h3>
+            <p class="shopping-cart__empty__description">Você não tem nenhum item ainda no carrinho...</p>
+        </div>
+    }
 </main>

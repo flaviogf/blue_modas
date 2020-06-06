@@ -71,6 +71,31 @@
   color: var(--white);
 }
 
+.shopping-cart__empty {
+}
+
+.shopping-cart__empty > i {
+  color: #ff3e3e;
+  display: block;
+  font-size: 120px;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.shopping-cart__empty__title {
+  color: var(--white);
+  font-size: 34px;
+  font-weight: bold;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.shopping-cart__empty__description {
+  color: var(--white);
+  margin-top: 12px;
+  text-align: center;
+}
+
 @media (min-width: 768px) {
   .shopping-cart__list__item__info {
     align-items: center;
