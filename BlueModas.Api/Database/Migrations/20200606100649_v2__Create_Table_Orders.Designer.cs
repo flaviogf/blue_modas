@@ -3,14 +3,16 @@ using System;
 using BlueModas.Api.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BlueModas.Api.Database.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20200606100649_v2__Create_Table_Orders")]
+    partial class v2__Create_Table_Orders
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,33 +28,6 @@ namespace BlueModas.Api.Database.Migrations
                     b.HasKey("Number");
 
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("BlueModas.Api.Models.OrderItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("OrderNumber")
-                        .HasColumnType("char(36)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderNumber");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("BlueModas.Api.Models.Product", b =>
@@ -102,21 +77,6 @@ namespace BlueModas.Api.Database.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("OrderNumber");
                         });
-                });
-
-            modelBuilder.Entity("BlueModas.Api.Models.OrderItem", b =>
-                {
-                    b.HasOne("BlueModas.Api.Models.Order", null)
-                        .WithMany("Items")
-                        .HasForeignKey("OrderNumber")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BlueModas.Api.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
