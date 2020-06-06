@@ -29,11 +29,11 @@ namespace BlueModas.Api.Controllers
 
         [HttpPost]
         [Route("")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Tags = new[] { "Order" })]
-        public ActionResult Store([FromRoute] Guid number, OrderItemStoreViewModel viewModel)
+        public ActionResult Store([FromRoute] Guid number, [FromBody] OrderItemStoreViewModel viewModel)
         {
             var maybeOrder = _orderRepository.FindByNumber(number);
 
@@ -69,14 +69,14 @@ namespace BlueModas.Api.Controllers
 
                 _uow.Commit();
 
-                return Ok();
+                return NoContent();
             }
 
             order.Items.Add(orderItem);
 
             _uow.Commit();
 
-            return Ok();
+            return NoContent();
         }
     }
 }
