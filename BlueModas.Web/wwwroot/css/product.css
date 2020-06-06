@@ -66,6 +66,10 @@
   background-color: var(--red-dark-2);
 }
 
+.product__finish-order {
+  
+}
+
 @media (min-width: 375px) {
   .product__list__item__image {
     height: 167px;

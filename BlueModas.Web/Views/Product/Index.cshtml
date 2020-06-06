@@ -6,12 +6,14 @@
 
 <partial name="_Navbar" />
 
+<partial name="_Alert" />
+
 <main class="product">
     <ul class="product__list">
         @foreach(var it in Model)
         {
             <li class="product__list__item">
-                <form asp-action="Store" asp-controller="ShoppingCart" asp-route-productId="@it.Id">
+                <form asp-action="Store" asp-controller="AddProduct" asp-route-productId="@it.Id">
                     <span class="product__list__item__image" style="background-image: url('@it.Image');">
                         <button class="product__list__item__add" type="submit">
                             <i class="fa fa-shopping-bag"></i>
