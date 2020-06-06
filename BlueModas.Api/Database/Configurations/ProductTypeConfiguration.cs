@@ -15,6 +15,10 @@ namespace BlueModas.Api.Database.Configurations
                 .HasKey(it => it.Id);
 
             builder
+                .Property(it => it.Id)
+                .IsRequired();
+
+            builder
                 .Property(it => it.Name)
                 .IsRequired()
                 .HasMaxLength(255);

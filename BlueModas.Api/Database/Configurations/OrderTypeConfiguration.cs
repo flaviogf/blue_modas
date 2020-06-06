@@ -15,11 +15,15 @@ namespace BlueModas.Api.Database.Configurations
                 .HasKey(it => it.Number);
 
             builder
+                .Property(it => it.Number)
+                .IsRequired();
+
+            builder
                 .OwnsOne(it => it.Customer);
 
             builder
                 .HasMany(it => it.Items)
-                .WithOne()
+                .WithOne(it => it.Order)
                 .IsRequired();
         }
     }

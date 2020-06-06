@@ -9,6 +9,16 @@ namespace BlueModas.Api.Models
 
         public Customer Customer { get; set; }
 
-        public IList<OrderItem> Items { get; set; }
+        public ISet<OrderItem> Items { get; set; } = new HashSet<OrderItem>();
+
+        public override bool Equals(object obj)
+        {
+            return obj is Order order && order.Number == Number;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Number);
+        }
     }
 }

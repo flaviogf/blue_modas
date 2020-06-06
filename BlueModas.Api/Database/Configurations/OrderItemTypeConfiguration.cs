@@ -1,3 +1,4 @@
+using System;
 using BlueModas.Api.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -12,7 +13,20 @@ namespace BlueModas.Api.Database.Configurations
                 .ToTable("OrderItems");
 
             builder
-                .HasKey(it => it.Id);
+                .Property<Guid>("OrderId")
+                .IsRequired();
+
+            builder
+                .Property<int>("ProductId")
+                .IsRequired();
+
+            builder
+                .HasKey("OrderId", "ProductId");
+
+            builder
+                .HasOne(it => it.Order)
+                .WithMany(it => it.Items)
+                .IsRequired();
 
             builder
                 .HasOne(it => it.Product)
