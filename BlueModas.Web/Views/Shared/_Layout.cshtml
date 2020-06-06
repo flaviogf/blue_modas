@@ -9,11 +9,21 @@
     <link rel="stylesheet" href="~/lib/minireset/minireset.min.css">
     <link rel="stylesheet" href="~/css/app.css">
     <link rel="stylesheet" href="~/css/navbar.css">
+    <link rel="stylesheet" href="~/css/alert.css">
     @RenderSection("styles", required: false)
 </head>
 <body>
     @RenderBody()
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.fa.fa-times').click(function() { 
+                $(this).parent().parent().hide()
+            })
+        })
+    </script>
+    
     @RenderSection("scripts", required: false)
 </body>
 </html>

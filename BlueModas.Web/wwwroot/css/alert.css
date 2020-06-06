@@ -1,0 +1,25 @@
+.alert {
+  color: var(--white);
+}
+
+.alert--failure {
+  background-color: var(--red);
+}
+
+.alert--success {
+  background: var(--green);
+}
+
+.alert__wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 16px;
+}
+
+.alert__wrapper > i {
+  cursor: pointer;
+  margin-right: 16px;
+}
