@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using BlueModas.Api.Database;
 using BlueModas.Api.Infrastructure;
@@ -19,6 +20,11 @@ namespace BlueModas.Api.Repositories
         public void Add(Order order)
         {
             _context.Orders.Add(order);
+        }
+
+        public IList<Order> FindAll()
+        {
+            return _context.Orders.ToList();
         }
 
         public Maybe<Order> FindByNumber(Guid number)

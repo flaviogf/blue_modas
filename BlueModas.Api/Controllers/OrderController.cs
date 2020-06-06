@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using AutoMapper;
 using BlueModas.Api.Infrastructure;
 using BlueModas.Api.Models;
@@ -47,6 +48,17 @@ namespace BlueModas.Api.Controllers
             _uow.Commit();
 
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [SwaggerOperation(Tags = new[] { "Order" })]
+        public ActionResult<IList<OrderIndexViewModel>> Index()
+        {
+            var orders = _mapper.Map<IList<OrderIndexViewModel>>(_orderRepository.FindAll());
+
+            return Ok(orders);
         }
     }
 }
