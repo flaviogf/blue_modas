@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using BlueModas.Web.Services;
 using BlueModas.Web.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlueModas.Web.Controllers
@@ -26,15 +27,17 @@ namespace BlueModas.Web.Controllers
         {
             if (HttpContext.Session.TryGetValue("@order-number", out var value))
             {
-                var orderItem = new OrderItemStoreViewModel
+                var orderNumber = new Guid(value);
+
+                var item = new OrderItemStoreViewModel
                 {
-                    OrderNumber = new Guid(value),
+                    OrderNumber = orderNumber,
                     ProductId = productId
                 };
 
-                var orderItemCreateResult = await _orderService.CreateItem(orderItem);
+                var itemResult = await _orderService.AddItem(item);
 
-                if (orderItemCreateResult.IsFailure)
+                if (itemResult.IsFailure)
                 {
                     TempData["Failure"] = "Não foi possível adicionar o produto no carrinho";
 
@@ -43,45 +46,65 @@ namespace BlueModas.Web.Controllers
 
                 TempData["Success"] = "Produto adicionado ao carrinho";
 
+                var countResult = await _orderService.CountNumberOfItems(orderNumber);
+
+                if (countResult.IsFailure)
+                {
+                    TempData["Failure"] = "Não foi possível atualizar o carrinho";
+
+                    return RedirectToAction("Index", "Product");
+                }
+
+                HttpContext.Session.SetInt32("@order-items-count", countResult.Value);
+
                 return RedirectToAction("Index", "Product");
             }
-            else
+
+            var order = new OrderStoreViewModel
             {
-                var order = new OrderStoreViewModel
-                {
-                    Number = Guid.NewGuid()
-                };
+                Number = Guid.NewGuid()
+            };
 
-                var orderCreateResult = await _orderService.Create(order);
+            var orderCreateResult = await _orderService.Add(order);
 
-                if (orderCreateResult.IsFailure)
-                {
-                    TempData["Failure"] = "Não foi possível adicionar o produto no carrinho";
-
-                    return RedirectToAction("Index", "Product");
-                }
-
-                var orderItem = new OrderItemStoreViewModel
-                {
-                    OrderNumber = order.Number,
-                    ProductId = productId
-                };
-
-                var orderItemCreateResult = await _orderService.CreateItem(orderItem);
-
-                if (orderItemCreateResult.IsFailure)
-                {
-                    TempData["Failure"] = "Não foi possível adicionar o produto no carrinho";
-
-                    return RedirectToAction("Index", "Product");
-                }
-
-                HttpContext.Session.Set("@order-number", order.Number.ToByteArray());
-
-                TempData["Success"] = "Produto adicionado ao carrinho";
+            if (orderCreateResult.IsFailure)
+            {
+                TempData["Failure"] = "Não foi possível adicionar o produto no carrinho";
 
                 return RedirectToAction("Index", "Product");
             }
+
+            HttpContext.Session.Set("@order-number", order.Number.ToByteArray());
+
+            var orderItem = new OrderItemStoreViewModel
+            {
+                OrderNumber = order.Number,
+                ProductId = productId
+            };
+
+            var orderItemCreateResult = await _orderService.AddItem(orderItem);
+
+            if (orderItemCreateResult.IsFailure)
+            {
+                TempData["Failure"] = "Não foi possível adicionar o produto no carrinho";
+
+                return RedirectToAction("Index", "Product");
+            }
+
+            TempData["Success"] = "Produto adicionado ao carrinho";
+
+            var orderItemCountResult = await _orderService.CountNumberOfItems(order.Number);
+
+            if (orderItemCountResult.IsFailure)
+            {
+                TempData["Failure"] = "Não foi possível atualizar o carrinho";
+
+                return RedirectToAction("Index", "Product");
+            }
+
+            HttpContext.Session.SetInt32("@order-items-count", orderItemCountResult.Value);
+
+            return RedirectToAction("Index", "Product");
         }
     }
 }
