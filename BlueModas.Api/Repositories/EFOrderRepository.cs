@@ -3,6 +3,7 @@ using System.Linq;
 using BlueModas.Api.Database;
 using BlueModas.Api.Infrastructure;
 using BlueModas.Api.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlueModas.Api.Repositories
 {
@@ -22,7 +23,9 @@ namespace BlueModas.Api.Repositories
 
         public Maybe<Order> FindByNumber(Guid number)
         {
-            return _context.Orders.FirstOrDefault(it => it.Number == number);
+            return _context.Orders
+                .Include(it => it.Items)
+                .FirstOrDefault(it => it.Number == number);
         }
     }
 }
