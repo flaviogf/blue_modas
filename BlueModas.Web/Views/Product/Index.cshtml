@@ -11,13 +11,15 @@
         @foreach(var it in Model)
         {
             <li class="product__list__item">
-                <span class="product__list__item__image" style="background-image: url('@it.Image');">
-                    <button class="product__list__item__add">
-                        <i class="fa fa-shopping-bag"></i>
-                    </button>
-                </span>
-                <h3 class="product__list__item__name">@it.Name</h3>
-                <span class="product__list__item__price">@it.Price.ToString("C")</span>
+                <form asp-action="Store" asp-controller="ShoppingCart" asp-route-productId="@it.Id">
+                    <span class="product__list__item__image" style="background-image: url('@it.Image');">
+                        <button class="product__list__item__add" type="submit">
+                            <i class="fa fa-shopping-bag"></i>
+                        </button>
+                    </span>
+                    <h3 class="product__list__item__name">@it.Name</h3>
+                    <span class="product__list__item__price">@it.Price.ToString("C")</span>
+                </form>
             </li>
         }
     </ul>
