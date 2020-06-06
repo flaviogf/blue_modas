@@ -3,7 +3,9 @@ using BlueModas.Api.Infrastructure;
 using BlueModas.Api.Models;
 using BlueModas.Api.Repositories;
 using BlueModas.Api.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace BlueModas.Api.Controllers
 {
@@ -26,6 +28,9 @@ namespace BlueModas.Api.Controllers
 
         [HttpPost]
         [Route("")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [SwaggerOperation(Tags = new[] { "Order" })]
         public ActionResult Store([FromBody] OrderStoreViewModel viewModel)
         {
             var maybeOrder = _orderRepository.FindByNumber(viewModel.Number);
