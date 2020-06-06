@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace BlueModas.Web.Services
             _logger = logger;
         }
 
-        public async Task<Result> Create(OrderStoreViewModel order)
+        public async Task<Result> Add(OrderStoreViewModel order)
         {
             try
             {
@@ -44,7 +45,7 @@ namespace BlueModas.Web.Services
             }
         }
 
-        public async Task<Result> CreateItem(OrderItemStoreViewModel item)
+        public async Task<Result> AddItem(OrderItemStoreViewModel item)
         {
             try
             {
@@ -65,6 +66,46 @@ namespace BlueModas.Web.Services
                 _logger.LogError(ex, string.Empty);
 
                 return Result.Fail(ex.Message);
+            }
+        }
+
+        public async Task<Result<OrderShowViewModel>> FindByNumber(Guid number)
+        {
+            try
+            {
+                var client = _clientFactory.CreateClient("Api");
+
+                var response = await client.GetStringAsync($"/Order/{number}");
+
+                var products = JsonConvert.DeserializeObject<OrderShowViewModel>(response);
+
+                return Result.Ok<OrderShowViewModel>(products);
+            }
+            catch (HttpRequestException ex)
+            {
+                _logger.LogError(ex, string.Empty);
+
+                return Result.Fail<OrderShowViewModel>(ex.Message);
+            }
+        }
+
+        public async Task<Result<int>> CountNumberOfItems(Guid number)
+        {
+            try
+            {
+                var client = _clientFactory.CreateClient("Api");
+
+                var response = await client.GetStringAsync($"/Order/{number}/NumberOfItems");
+
+                var count = JsonConvert.DeserializeObject<int>(response);
+
+                return Result.Ok<int>(count);
+            }
+            catch (HttpRequestException ex)
+            {
+                _logger.LogError(ex, string.Empty);
+
+                return Result.Fail<int>(ex.Message);
             }
         }
     }
