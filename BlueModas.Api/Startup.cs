@@ -34,11 +34,14 @@ namespace BlueModas.Api
                 it.CreateMap<Product, ProductStoreViewModel>().ReverseMap();
                 it.CreateMap<Product, ProductShowViewModel>().ReverseMap();
                 it.CreateMap<Product, ProductUpdateViewModel>().ReverseMap();
+
+                it.CreateMap<Order, OrderStoreViewModel>().ReverseMap();
             }, Assembly.GetExecutingAssembly());
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped<IProductRepository, EFProductRepository>();
+            services.AddScoped<IOrderRepository, EFOrderRepository>();
 
             services.AddControllers();
 
