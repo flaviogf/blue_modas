@@ -4,7 +4,11 @@ namespace BlueModas.Api.Models
 {
     public class OrderItem
     {
+        public Guid OrderNumber { get; set; }
+
         public Order Order { get; set; }
+
+        public int ProductId { get; set; }
 
         public Product Product { get; set; }
 
@@ -14,12 +18,12 @@ namespace BlueModas.Api.Models
 
         public override bool Equals(object obj)
         {
-            return obj is OrderItem orderItem && orderItem.Order.Equals(Order) && orderItem.Product.Equals(Product);
+            return obj is OrderItem orderItem && orderItem.OrderNumber == OrderNumber && orderItem.ProductId == ProductId;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Order, Product);
+            return HashCode.Combine(Product);
         }
     }
 }
