@@ -30,33 +30,13 @@ namespace BlueModas.Web.Services
 
                 var products = JsonConvert.DeserializeObject<IList<ProductIndexViewModel>>(response);
 
-                return Result.Ok(products);
+                return Result.Ok<IList<ProductIndexViewModel>>(products);
             }
             catch (HttpRequestException ex)
             {
                 _logger.LogError(ex, string.Empty);
 
                 return Result.Fail<IList<ProductIndexViewModel>>(ex.Message);
-            }
-        }
-
-        public async Task<Result<ProductShowViewModel>> FindOne(int id)
-        {
-            try
-            {
-                var client = _clientFactory.CreateClient("Api");
-
-                var response = await client.GetStringAsync($"/Product/{id}");
-
-                var product = JsonConvert.DeserializeObject<ProductShowViewModel>(response);
-
-                return Result.Ok(product);
-            }
-            catch (HttpRequestException ex)
-            {
-                _logger.LogError(ex, string.Empty);
-
-                return Result.Fail<ProductShowViewModel>(ex.Message);
             }
         }
     }
