@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace BlueModas.Api
+namespace BlueModas.Web
 {
     public class Startup
     {
@@ -19,12 +19,19 @@ namespace BlueModas.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+
+            services.AddSession();
+
             services.AddHttpClient("Api", it =>
             {
                 it.BaseAddress = new Uri(_configuration.GetValue<string>("Api"));
             });
 
+            services.AddHttpContextAccessor();
+
             services.AddScoped<IProductService, HttpProductService>();
+            services.AddScoped<IOrderService, HttpOrderService>();
 
             services.AddControllersWithViews();
         }
@@ -39,6 +46,8 @@ namespace BlueModas.Api
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseEndpoints(it => it.MapControllers());
         }
