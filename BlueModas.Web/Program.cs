@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace BlueModas.Api
+namespace BlueModas.Web
 {
     public class Program
     {
