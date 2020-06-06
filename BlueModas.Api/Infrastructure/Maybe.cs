@@ -1,6 +1,6 @@
 using System;
 
-namespace BlueModas.Api.ViewModels
+namespace BlueModas.Api.Infrastructure
 {
     public struct Maybe<T>
     {

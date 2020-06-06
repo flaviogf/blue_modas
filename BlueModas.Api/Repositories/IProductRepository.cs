@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using BlueModas.Api.Infrastructure;
 using BlueModas.Api.Models;
-using BlueModas.Api.ViewModels;
 
 namespace BlueModas.Api.Repositories
 {
