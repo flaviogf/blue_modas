@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using AutoMapper;
 using BlueModas.Api.Infrastructure;
@@ -59,6 +60,25 @@ namespace BlueModas.Api.Controllers
             var orders = _mapper.Map<IList<OrderIndexViewModel>>(_orderRepository.FindAll());
 
             return Ok(orders);
+        }
+
+        [HttpGet]
+        [Route("{number}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Tags = new[] { "Order" })]
+        public ActionResult<OrderShowViewModel> Show([FromRoute] Guid number)
+        {
+            var maybeOrder = _orderRepository.FindByNumber(number);
+
+            if (!maybeOrder.HasValue)
+            {
+                return NotFound();
+            }
+
+            var order = _mapper.Map<OrderShowViewModel>(maybeOrder.Value);
+
+            return Ok(order);
         }
     }
 }

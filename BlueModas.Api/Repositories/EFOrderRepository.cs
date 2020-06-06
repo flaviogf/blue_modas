@@ -31,6 +31,7 @@ namespace BlueModas.Api.Repositories
         {
             return _context.Orders
                 .Include(it => it.Items)
+                .ThenInclude(it => it.Product)
                 .FirstOrDefault(it => it.Number == number);
         }
     }
