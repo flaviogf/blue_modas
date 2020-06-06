@@ -48,6 +48,7 @@ namespace BlueModas.Api
             services.AddSwaggerGen(it =>
             {
                 it.SwaggerDoc("v1", new OpenApiInfo { Title = "Blue Modas API", Version = "v1" });
+                it.EnableAnnotations();
             });
         }
 
