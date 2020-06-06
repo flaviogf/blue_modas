@@ -30,7 +30,7 @@ namespace BlueModas.Api.Controllers
 
         [HttpPost]
         [Route("")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [SwaggerOperation(Tags = new[] { "Order" })]
         public ActionResult Store([FromBody] OrderStoreViewModel viewModel)
@@ -48,7 +48,7 @@ namespace BlueModas.Api.Controllers
 
             _uow.Commit();
 
-            return Ok();
+            return CreatedAtAction(nameof(Show), new { number = order.Number }, _mapper.Map<OrderShowViewModel>(order));
         }
 
         [HttpGet]
