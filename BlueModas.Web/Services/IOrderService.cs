@@ -7,5 +7,7 @@ namespace BlueModas.Web.Services
     public interface IOrderService
     {
         Task<Result> Create(OrderStoreViewModel order);
+
+        Task<Result> CreateItem(OrderItemStoreViewModel item);
     }
 }
