@@ -25,9 +25,9 @@ namespace BlueModas.Web.Controllers
 
             if (result.IsFailure)
             {
-                var products = new List<ProductIndexViewModel>();
+                TempData["Failure"] = "Não foi possível carregar os produtos";
 
-                return View(products);
+                return View(new List<ProductIndexViewModel>());
             }
 
             return View(result.Value);
