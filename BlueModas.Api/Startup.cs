@@ -40,6 +40,8 @@ namespace BlueModas.Api
                 it.CreateMap<Order, OrderShowViewModel>().ReverseMap();
 
                 it.CreateMap<OrderItem, OrderItemShowViewModel>().ReverseMap();
+
+                it.CreateMap<Customer, OrderCustomerStoreViewModel>().ReverseMap();
             }, Assembly.GetExecutingAssembly());
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
