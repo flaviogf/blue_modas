@@ -31,11 +31,10 @@ namespace BlueModas.Web.Controllers
 
                 var item = new OrderItemStoreViewModel
                 {
-                    OrderNumber = orderNumber,
                     ProductId = productId
                 };
 
-                var itemResult = await _orderService.AddItem(item);
+                var itemResult = await _orderService.AddItem(orderNumber, item);
 
                 if (itemResult.IsFailure)
                 {
@@ -78,11 +77,10 @@ namespace BlueModas.Web.Controllers
 
             var orderItem = new OrderItemStoreViewModel
             {
-                OrderNumber = order.Number,
                 ProductId = productId
             };
 
-            var orderItemCreateResult = await _orderService.AddItem(orderItem);
+            var orderItemCreateResult = await _orderService.AddItem(order.Number, orderItem);
 
             if (orderItemCreateResult.IsFailure)
             {
