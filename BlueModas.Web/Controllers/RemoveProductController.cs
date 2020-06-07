@@ -44,7 +44,7 @@ namespace BlueModas.Web.Controllers
             {
                 TempData["Failure"] = "Não foi possível atualizar o carrinho";
 
-                return RedirectToAction("Index", "Product");
+                return RedirectToAction("Show", "ShoppingCart");
             }
 
             HttpContext.Session.SetInt32("@order-items-count", countResult.Value);
