@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlueModas.Web.Controllers
 {
-    [Route("[controller]")]
+    [Route("MeuCarrinho")]
     public class ShoppingCartController : Controller
     {
         private readonly IOrderService _orderService;
