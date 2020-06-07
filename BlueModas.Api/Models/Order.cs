@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BlueModas.Api.Models
 {
@@ -10,6 +11,10 @@ namespace BlueModas.Api.Models
         public Customer Customer { get; set; }
 
         public ISet<OrderItem> Items { get; set; } = new HashSet<OrderItem>();
+
+        public decimal Total => Items.Sum(it => it.SubTotal);
+
+        public int NumberOfItems => Items.Sum(it => it.Quantity);
 
         public override bool Equals(object obj)
         {
