@@ -1,0 +1,49 @@
+.completed-order {
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 16px;
+}
+
+.completed-order > i {
+  color: #ff3e3e;
+  display: block;
+  font-size: 120px;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.completed-order__title {
+  color: var(--white);
+  font-size: 32px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.completed-order__description {
+  color: var(--white);
+  text-align: center;
+  line-height: 24px;
+}
+
+.completed-order__description:first-of-type {
+  margin-top: 12px;
+}
+
+.completed-order__button {
+  align-items: center;
+  background: var(--red);
+  border-radius: 25px;
+  box-shadow: 0px 4px 8px rgba(239, 54, 81, 0.35);
+  color: var(--white);
+  display: flex;
+  font-size: 14px;
+  height: 48px;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  max-width: 343px;
+  text-decoration: none;
+  text-transform: uppercase;
+  width: 100%;
+}

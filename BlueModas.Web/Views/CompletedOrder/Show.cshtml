@@ -1,0 +1,18 @@
+@section styles {
+    <link rel="stylesheet" href="~/css/completed-order.css">
+}
+
+<partial name="_Navbar" />
+
+<partial name="_Alert" />
+
+<main class="completed-order">
+    <i class="fa fa-rocket"></i>
+
+    <h1 class="completed-order__title">Sucesso</h1>
+
+    <p class="completed-order__description">Seu pedido foi realizado.</p>
+    <p class="completed-order__description">Obrigado por escolher nosso serviço!</p>
+
+    <a asp-action="Index" asp-controller="Product" class="completed-order__button">Continuar comprando</a>
+</main>
