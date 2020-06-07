@@ -78,5 +78,37 @@ namespace BlueModas.Api.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete]
+        [Route("{productId}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Tags = new[] { "Order" })]
+        public ActionResult Destroy([FromRoute] Guid number, [FromRoute] int productId)
+        {
+            var maybeOrder = _orderRepository.FindByNumber(number);
+
+            if (!maybeOrder.HasValue)
+            {
+                return NotFound();
+            }
+
+            var order = maybeOrder.Value;
+
+            Maybe<OrderItem> maybeOrderItem = order.Items.FirstOrDefault(it => it.ProductId == productId);
+
+            if (!maybeOrderItem.HasValue)
+            {
+                return NotFound();
+            }
+
+            var orderItem = maybeOrderItem.Value;
+
+            order.Items.Remove(orderItem);
+
+            _uow.Commit();
+
+            return NoContent();
+        }
     }
 }
