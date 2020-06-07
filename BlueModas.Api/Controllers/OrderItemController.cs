@@ -79,6 +79,37 @@ namespace BlueModas.Api.Controllers
             return NoContent();
         }
 
+        [HttpPut]
+        [Route("{productId}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [SwaggerOperation(Tags = new[] { "Order" })]
+        public ActionResult Update([FromRoute] Guid number, [FromRoute] int productId, [FromBody] OrderItemUpdateViewModel viewModel)
+        {
+            var maybeOrder = _orderRepository.FindByNumber(number);
+
+            if (!maybeOrder.HasValue)
+            {
+                return NotFound();
+            }
+
+            var order = maybeOrder.Value;
+
+            Maybe<OrderItem> maybeOrderItem = order.Items.FirstOrDefault(it => it.ProductId == productId);
+
+            if (!maybeOrderItem.HasValue)
+            {
+                return NotFound();
+            }
+
+            maybeOrderItem.Value.Quantity = viewModel.Quantity;
+
+            _uow.Commit();
+
+            return NoContent();
+        }
+
         [HttpDelete]
         [Route("{productId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
