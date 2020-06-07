@@ -25,6 +25,12 @@
                             <span class="shopping-cart__list__item__price">@it.SubTotal.ToString("C")</span>
                         </footer>
                     </div>
+
+                    <form asp-action="Destroy" asp-controller="RemoveProduct" asp-route-productId="@it.ProductId">
+                        <button class="shopping-cart__list__item__remove">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </form>
                 </li>
             }
         </ul>

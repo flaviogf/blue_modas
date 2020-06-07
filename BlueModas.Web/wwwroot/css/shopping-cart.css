@@ -78,6 +78,15 @@
   width: 100%;
 }
 
+.shopping-cart__list__item__remove {
+  background: no-repeat;
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  font-size: 16px;
+  margin: 6px 4px 0 0;
+}
+
 .shopping-cart__actions {
   display: flex;
   justify-content: flex-end;
