@@ -55,8 +55,8 @@
         </div>
     </section>
 
-    <div class="order-details__actions">
+    <form asp-action="Store" asp-controller="CheckOut" class="order-details__actions">
         <a asp-action="Store" asp-controller="CustomerIdentification" class="order-details__actions__item order-details__actions__item--back">Voltar</a>
         <button class="order-details__actions__item order-details__actions__item--finish" type="submit">Finalizar</button>
-    </div>
+    </form>
 </main>
