@@ -45,7 +45,7 @@ namespace BlueModas.Web.Services
             }
         }
 
-        public async Task<Result> AddItem(OrderItemStoreViewModel item)
+        public async Task<Result> AddItem(Guid orderNumber, OrderItemStoreViewModel item)
         {
             try
             {
@@ -55,7 +55,31 @@ namespace BlueModas.Web.Services
 
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                var response = await client.PostAsync($"Order/{item.OrderNumber}/Item", content);
+                var response = await client.PostAsync($"Order/{orderNumber}/Item", content);
+
+                response.EnsureSuccessStatusCode();
+
+                return Result.Ok();
+            }
+            catch (HttpRequestException ex)
+            {
+                _logger.LogError(ex, string.Empty);
+
+                return Result.Fail(ex.Message);
+            }
+        }
+
+        public async Task<Result> AddCustomer(Guid orderNumber, OrderCustomerStoreViewModel customer)
+        {
+            try
+            {
+                var client = _clientFactory.CreateClient("Api");
+
+                var json = JsonConvert.SerializeObject(customer);
+
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await client.PostAsync($"Order/{orderNumber}/Customer", content);
 
                 response.EnsureSuccessStatusCode();
 
@@ -89,13 +113,13 @@ namespace BlueModas.Web.Services
             }
         }
 
-        public async Task<Result<int>> CountNumberOfItems(Guid number)
+        public async Task<Result<int>> CountNumberOfItems(Guid orderNumber)
         {
             try
             {
                 var client = _clientFactory.CreateClient("Api");
 
-                var response = await client.GetStringAsync($"/Order/{number}/NumberOfItems");
+                var response = await client.GetStringAsync($"/Order/{orderNumber}/NumberOfItems");
 
                 var count = JsonConvert.DeserializeObject<int>(response);
 

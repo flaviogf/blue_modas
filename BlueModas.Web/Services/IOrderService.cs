@@ -9,10 +9,12 @@ namespace BlueModas.Web.Services
     {
         Task<Result> Add(OrderStoreViewModel order);
 
-        Task<Result> AddItem(OrderItemStoreViewModel item);
+        Task<Result> AddItem(Guid orderNumber, OrderItemStoreViewModel item);
+
+        Task<Result> AddCustomer(Guid orderNumber, OrderCustomerStoreViewModel customer);
 
         Task<Result<OrderShowViewModel>> FindByNumber(Guid number);
 
-        Task<Result<int>> CountNumberOfItems(Guid number);
+        Task<Result<int>> CountNumberOfItems(Guid orderNumber);
     }
 }
