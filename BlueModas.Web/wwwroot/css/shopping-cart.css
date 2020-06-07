@@ -81,11 +81,13 @@
   color: var(--white);
   display: flex;
   flex: 1;
+  font-size: 14px;
   justify-content: center;
   max-width: 200px;
   min-height: 48px;
   text-align: center;
   text-decoration: none;
+  text-transform: uppercase;
 }
 
 .shopping-cart__actions__item--keep-buying {

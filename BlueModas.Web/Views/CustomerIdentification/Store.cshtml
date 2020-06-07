@@ -1,5 +1,36 @@
+@model BlueModas.Web.ViewModels.OrderCustomerStoreViewModel
+
+@section styles {
+    <link rel="stylesheet" href="~/css/customer-identification.css">
+}
+
 <partial name="_Navbar" />
 
 <partial name="_Alert" />
 
-<h3>Meus Dados</h3>
+<main class="customer-identification">
+    <form asp-action="Store" asp-controller="CustomerIdentification" class="customer-identification__form">
+        <div class="customer-identification__input-group">
+            <label asp-for="Name" class="customer-identification__label"></label>
+            <input asp-for="Name" class="customer-identification__input" />
+        </div>
+        <span asp-validation-for="Name" class="customer-identification__validation"></span>
+
+        <div class="customer-identification__input-group">
+            <label asp-for="Email" class="customer-identification__label"></label>
+            <input asp-for="Email" class="customer-identification__input" />
+        </div>
+        <span asp-validation-for="Email" class="customer-identification__validation"></span>
+
+        <div class="customer-identification__input-group">
+            <label asp-for="Phone" class="customer-identification__label"></label>
+            <input asp-for="Phone" class="customer-identification__input" />
+        </div>
+        <span asp-validation-for="Phone" class="customer-identification__validation"></span>
+
+        <div class="customer-identification__actions">
+            <a asp-action="Show" asp-controller="ShoppingCart" class="customer-identification__actions__item customer-identification__actions__item--back-to-cart">Voltar</a>
+            <button class="customer-identification__actions__item customer-identification__actions__item--confirm" type="submit">Confirmar</button>
+        </div>
+    </form>
+</main>
