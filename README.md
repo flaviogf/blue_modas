@@ -16,7 +16,7 @@
   <img src="./.github/web.gif" />
 </p>
 
-### Casos de uso
+### Casos de Uso
 
 - [ ] A loja precisa ter uma página principal com a listagem dos produtos com as informações de
 preço nome e imagem.
@@ -43,7 +43,10 @@ dados do cliente e produtos selecionados com seus respectivos valores.
 - ASP.NET Core MVC
 - AutoMapper
 - C#
+- CSS
 - Entity Framework Core
+- HTML
+- JavaScript
 - JQuery
 - JQuery Validation
 - JQuery Validation Unobtrusive
@@ -54,7 +57,50 @@ dados do cliente e produtos selecionados com seus respectivos valores.
 
 ## :thinking: Como utilizar
 
+### Requisitos
+
+- .NET Core 3.1
+- Git
+- MySQL 5
+
+### API 
+
+```bash
+$ git clone https://github.com/flaviogf/blue_modas.git
+
+$ cd blue_modas
+
+$ dotnet restore
+
+$ dotnet run --project BlueModas.Api
+
+# Estará rodando na porta 5000
+```
+
+### WEB
+```bash
+$ git clone https://github.com/flaviogf/blue_modas.git
+
+$ cd blue_modas
+
+$ dotnet restore
+
+$ dotnet run --project BlueModas.Web
+
+# Estará rodando na porta 5001
+```
+
 ## :notebook: Notas
+
+### Escolha do modelo de desenvolvimento
+
+O projeto foi desenvolvido utilizando o modelo Data Driven, esta decisão foi feita com base nos casos de uso, chegando a
+conclusão que a complexidade não justificaria o uso do modelo Domain Driven.
+
+### Escolha do banco de dados
+
+O MySQL foi escolhido por estar disponível gratuitamente no serviço em que este projeto está hospedado, no caso o Azure
+Web Apps, que também possui um plano gratuito para fins de testes.
 
 ## :memo: Licença
 
