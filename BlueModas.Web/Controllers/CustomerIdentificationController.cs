@@ -74,7 +74,7 @@ namespace BlueModas.Web.Controllers
                 return View(viewModel);
             }
 
-            return RedirectToAction("Index", "Product");
+            return RedirectToAction("Show", "OrderDetails");
         }
     }
 }
