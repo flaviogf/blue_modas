@@ -69,6 +69,26 @@ namespace BlueModas.Web.Services
             }
         }
 
+        public async Task<Result> RemoveItem(Guid orderNumber, int productId)
+        {
+            try
+            {
+                var client = _clientFactory.CreateClient("Api");
+
+                var response = await client.DeleteAsync($"Order/{orderNumber}/Item/{productId}");
+
+                response.EnsureSuccessStatusCode();
+
+                return Result.Ok();
+            }
+            catch (HttpRequestException ex)
+            {
+                _logger.LogError(ex, string.Empty);
+
+                return Result.Fail(ex.Message);
+            }
+        }
+
         public async Task<Result> AddCustomer(Guid orderNumber, OrderCustomerStoreViewModel customer)
         {
             try
