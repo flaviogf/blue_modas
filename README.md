@@ -102,6 +102,8 @@ conclusão que a complexidade não justificaria o uso do modelo Domain Driven.
 O MySQL foi escolhido por estar disponível gratuitamente no serviço em que este projeto está hospedado, no caso o Azure
 Web Apps, que também possui um plano gratuito para fins de testes.
 
+Obs: este plano disponibiliza apenas 60 minutos de uso por dia, por isso o link pode estar indisponível algumas vezes.
+
 ## :memo: Licença
 
 Esse projeto está sob a licença GNU. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
