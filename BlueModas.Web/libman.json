@@ -16,6 +16,20 @@
         "dist/jquery.min.js",
         "dist/jquery.min.map"
       ]
+    },
+    {
+      "library": "jquery-validation-unobtrusive@3.2.11",
+      "destination": "wwwroot/lib/jquery-validation-unobtrusive",
+      "files": [
+        "dist/jquery.validate.unobtrusive.min.js"
+      ]
+    },
+    {
+      "library": "jquery-validation@1.19.2",
+      "destination": "wwwroot/lib/jquery-validate",
+      "files": [
+        "dist/jquery.validate.min.js"
+      ]
     }
   ]
 }
