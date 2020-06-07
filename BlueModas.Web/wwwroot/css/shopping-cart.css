@@ -63,18 +63,18 @@
   font-size: 17px;
   height: 36px;
   max-width: 80px;
-  min-width: 80px;
   padding: 6px 16px;
   text-align: center;
   width: 100%;
 }
 
 .shopping-cart__list__item__price {
+  flex: 1;
   font-size: 14px;
   color: var(--white);
-  min-width: 80px;
-  max-width: 80px;
-  text-align: center;
+  margin-left: 6px;
+  min-width: 64px;
+  text-align: right;
   width: 100%;
 }
 
