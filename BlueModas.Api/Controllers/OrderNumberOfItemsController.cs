@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using BlueModas.Api.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -34,9 +33,7 @@ namespace BlueModas.Api.Controllers
 
             var order = maybeOrder.Value;
 
-            var sum = order.Items.Sum(it => it.Quantity);
-
-            return Ok(sum);
+            return Ok(order.NumberOfItems);
         }
     }
 }
