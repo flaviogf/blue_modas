@@ -1,4 +1,4 @@
-function debounce(fn, delay) {
+function $debounce(fn, delay) {
   let timeout = null;
 
   return function () {
