@@ -87,9 +87,35 @@
   margin: 6px 4px 0 0;
 }
 
+.shopping-cart__info__title {
+  color: var(--white);
+  font-size: 14px;
+}
+
+.shopping-cart__info__group {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.shopping-cart__info__label {
+  color: var(--gray-light-1);
+  font-size: 14px;
+  margin-right: 10px;
+  min-width: 100px;
+}
+
+.shopping-cart__info__value {
+  color: var(--white);
+  flex: 1;
+  font-weight: bold;
+}
+
 .shopping-cart__actions {
   display: flex;
   justify-content: flex-end;
+  margin-top: 34px;
 }
 
 .shopping-cart__actions__item {
