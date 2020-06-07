@@ -1,0 +1,62 @@
+@model BlueModas.Web.ViewModels.OrderShowViewModel
+
+@section styles {
+    <link rel="stylesheet" href="~/css/order-details.css">
+}
+
+<partial name="_Navbar" />
+
+<partial name="_Alert" />
+
+<main class="order-details">
+    <h2 class="order-details__number">Pedido Nº @Model.Number.ToString().Substring(0, 8).ToUpper()</h3>
+
+    <p class="order-details__number-of-items">@Model.NumberOfItems itens</p>
+
+    <ul class="order-details__list">
+        @foreach (var it in Model.Items)
+        {
+            <li class="order-details__list__item">
+                <span class="order-details__list__item__image" style="background-image: url('@it.ProductImage');"></span>
+
+                <div class="order-details__list__item__info">
+                    <header class="order-details__list__item__header">@it.ProductName</header>
+
+                    <footer class="order-details__list__item__footer">
+                        <input class="order-details__list__item__quantity" readonly value="@it.Quantity">
+                        <span class="order-details__list__item__price">@it.SubTotal.ToString("C")</span>
+                    </footer>
+                </div>
+            </li>
+        }
+    </ul>
+
+    <section class="order-details__info">
+        <h3 class="order-details__info__title">Informações</h3>
+
+        <div class="order-details__info__group">
+            <span class="order-details__info__label">Nome</span>
+            <span class="order-details__info__value">@Model.CustomerName</span>
+        </div>
+
+        <div class="order-details__info__group">
+            <span class="order-details__info__label">E-mail</span>
+            <span class="order-details__info__value">@Model.CustomerEmail</span>
+        </div>
+
+        <div class="order-details__info__group">
+            <span class="order-details__info__label">Telefone</span>
+            <span class="order-details__info__value">@Model.CustomerPhone</span>
+        </div>
+
+        <div class="order-details__info__group">
+            <span class="order-details__info__label">Total</span>
+            <span class="order-details__info__value">@Model.Total.ToString("C")</span>
+        </div>
+    </section>
+
+    <div class="order-details__actions">
+        <a asp-action="Store" asp-controller="CustomerIdentification" class="order-details__actions__item order-details__actions__item--back">Voltar</a>
+        <button class="order-details__actions__item order-details__actions__item--finish" type="submit">Finalizar</button>
+    </div>
+</main>
