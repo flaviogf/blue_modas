@@ -25,7 +25,7 @@ namespace BlueModas.Api.Models
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Product);
+            return HashCode.Combine(OrderNumber, ProductId);
         }
     }
 }
