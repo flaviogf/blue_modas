@@ -13,6 +13,8 @@ namespace BlueModas.Web.Services
 
         Task<Result> RemoveItem(Guid orderNumber, int productId);
 
+        Task<Result> UpdateItem(Guid orderNumber, int productId, OrderItemUpdateViewModel item);
+
         Task<Result> AddCustomer(Guid orderNumber, OrderCustomerStoreViewModel customer);
 
         Task<Result<OrderShowViewModel>> FindByNumber(Guid number);

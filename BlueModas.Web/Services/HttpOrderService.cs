@@ -89,6 +89,30 @@ namespace BlueModas.Web.Services
             }
         }
 
+        public async Task<Result> UpdateItem(Guid orderNumber, int productId, OrderItemUpdateViewModel item)
+        {
+            try
+            {
+                var client = _clientFactory.CreateClient("Api");
+
+                var json = JsonConvert.SerializeObject(item);
+
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await client.PutAsync($"Order/{orderNumber}/Item/{productId}", content);
+
+                response.EnsureSuccessStatusCode();
+
+                return Result.Ok();
+            }
+            catch (HttpRequestException ex)
+            {
+                _logger.LogError(ex, string.Empty);
+
+                return Result.Fail(ex.Message);
+            }
+        }
+
         public async Task<Result> AddCustomer(Guid orderNumber, OrderCustomerStoreViewModel customer)
         {
             try
