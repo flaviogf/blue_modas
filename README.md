@@ -49,8 +49,8 @@ dados do cliente e produtos selecionados com seus respectivos valores.
 - JQuery Validation Unobtrusive
 - MySQL
 - Newtonsoft
-- Swashbuckle
 - Razor
+- Swashbuckle
 
 ## :thinking: Como utilizar
 
