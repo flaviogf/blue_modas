@@ -113,7 +113,7 @@
 }
 
 .shopping-cart__empty > i {
-  color: #ff3e3e;
+  color: var(--red-light-1);
   display: block;
   font-size: 120px;
   margin-top: 16px;
