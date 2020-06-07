@@ -16,6 +16,8 @@ namespace BlueModas.Api.Models
 
         public int Quantity { get; set; }
 
+        public decimal SubTotal => Price * Quantity;
+
         public override bool Equals(object obj)
         {
             return obj is OrderItem orderItem && orderItem.OrderNumber == OrderNumber && orderItem.ProductId == ProductId;
