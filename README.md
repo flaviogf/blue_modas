@@ -12,8 +12,16 @@
 
 :credit_card: E-commerce loja Blue Modas.
 
+### WEB
+
 <p align="center">
   <img src="./.github/web.gif" />
+</p>
+
+### API
+
+<p align="center">
+  <img src="./.github/api.gif" />
 </p>
 
 ### Casos de Uso
