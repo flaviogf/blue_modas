@@ -12,13 +12,11 @@
 
 :credit_card: E-commerce loja Blue Modas.
 
-### WEB
+### Preview
 
 <p align="center">
   <img src="./.github/web.gif" />
 </p>
-
-### API
 
 <p align="center">
   <img src="./.github/api.gif" />
@@ -44,6 +42,12 @@ solicitando nome, e-mail e telefone.
 
 - [ ] Após a identificação do cliente deve ser exibido a página do pedido com o número do pedido,
 dados do cliente e produtos selecionados com seus respectivos valores.
+
+### Diagrama Entidade e Relacionamento
+
+<p align="center">
+  <img src="./.github/er.png" />
+</p>
 
 ## :computer: Tecnologias
 
